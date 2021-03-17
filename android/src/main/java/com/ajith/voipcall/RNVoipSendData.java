@@ -11,6 +11,8 @@ import com.facebook.react.bridge.ReactContext;
 import com.facebook.react.bridge.WritableMap;
 import com.facebook.react.modules.core.DeviceEventManagerModule;
 
+import java.util.Objects;
+
 
 public class RNVoipSendData {
     private ReactApplicationContext mReactContext;
@@ -59,7 +61,7 @@ public class RNVoipSendData {
             WritableMap params = Arguments.createMap();
             params.putString("action",action);
             params.putInt("notificationId", intent.getIntExtra("notificationId", 0));
-            switch (action){
+            switch (Objects.requireNonNull(action)){
                 case "callAnswer":
                     params.putString("callerId", intent.getStringExtra("callerId"));
                     sendEvent(mReactContext,"RNVoipCallPerformAnswerCallAction", params);
@@ -83,7 +85,7 @@ public class RNVoipSendData {
                     break;
             }
         }catch(NullPointerException e){
-            
+
         }
     }
 

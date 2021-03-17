@@ -107,6 +107,9 @@ public class RNVoipNotificationHelper {
         Class intentClass = getMainActivityClass();
         Intent intent = new Intent(context, intentClass);
         intent.addFlags(Intent.FLAG_ACTIVITY_SINGLE_TOP);
+        intent.addFlags(Intent.	FLAG_ACTIVITY_CLEAR_TOP);
+
+
         intent.putExtra("notificationId",notificationID);
         intent.putExtra("callerId", json.getString("callerId"));
         intent.putExtra("action", type);

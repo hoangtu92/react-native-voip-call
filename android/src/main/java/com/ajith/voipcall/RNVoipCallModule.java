@@ -24,19 +24,11 @@ public class RNVoipCallModule extends ReactContextBaseJavaModule implements Acti
 
   @Override
   public void onActivityResult(Activity activity, int requestCode, int resultCode, Intent intent) {
-    String l  = intent.getAction();
-    if(l == null) l = intent.getDataString();
-    assert l != null;
-    Log.d("LDS_DEBUG_Result", l);
     sendjsData.sentEventToJsModule(intent);
   }
 
   @Override
   public void onNewIntent(Intent intent){
-    String l  = intent.getAction();
-    if(l == null) l = intent.getDataString();
-    assert l != null;
-    Log.d("LDS_DEBUG_onNewIntent", l);
     sendjsData.sentEventToJsModule(intent);
   }
 
