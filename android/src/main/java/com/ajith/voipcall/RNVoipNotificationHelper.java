@@ -96,6 +96,8 @@ public class RNVoipNotificationHelper {
                             .setUsage(AudioAttributes.USAGE_UNKNOWN).build());
             channel.setVibrationPattern(new long[]{0, 1000, 500, 1000, 0, 1000, 500, 1000, 0, 1000, 500, 1000, 0, 1000, 500, 1000, 0, 1000, 500, 1000, 0, 1000, 500, 1000});
             channel.enableVibration(json.getBoolean("vibration"));
+            channel.setImportance(NotificationManager.IMPORTANCE_HIGH);
+            channel.setLockscreenVisibility(Notification.VISIBILITY_PUBLIC);
             manager.createNotificationChannel(channel);
         }
     }
