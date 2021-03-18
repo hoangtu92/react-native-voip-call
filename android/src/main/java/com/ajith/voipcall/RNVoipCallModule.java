@@ -14,13 +14,12 @@ import com.facebook.react.bridge.Promise;
 import com.facebook.react.bridge.ReadableMap;
 
 
-public class RNVoipCallModule extends ReactContextBaseJavaModule implements ActivityEventListener, LifecycleEventListener {
+public class RNVoipCallModule extends ReactContextBaseJavaModule implements ActivityEventListener {
 
   private final ReactApplicationContext reactContext;
 
   private  RNVoipNotificationHelper rnVoipNotificationHelper;
   private RNVoipSendData sendjsData;
-  private Application applicationContext;
   public static final String LogTag = "RNVoipCall";
 
   @Override
@@ -33,33 +32,13 @@ public class RNVoipCallModule extends ReactContextBaseJavaModule implements Acti
     sendjsData.sentEventToJsModule(intent);
   }
 
-  @Override
-  public void onHostResume() {
-    // Activity `onResume`
-    Log.e("LDS_ME", "Host resume");
-
-  }
-  @Override
-  public void onHostPause() {
-    // Activity `onPause`
-    Log.e("LDS_ME", "Host paused");
-  }
-  @Override
-  public void onHostDestroy() {
-    // Activity `onDestroy`
-    Log.e("LDS_ME", "Host destroy");
-  }
-
 
   RNVoipCallModule(ReactApplicationContext reactContext) {
     super(reactContext);
     this.reactContext = reactContext;
     reactContext.addActivityEventListener(this);
-
-    reactContext.addLifecycleEventListener(this);
-
-    this.applicationContext = (Application) reactContext.getApplicationContext();
-    rnVoipNotificationHelper = new RNVoipNotificationHelper(this.applicationContext);
+    Application applicationContext = (Application) reactContext.getApplicationContext();
+    rnVoipNotificationHelper = new RNVoipNotificationHelper(applicationContext);
     sendjsData = new RNVoipSendData(reactContext);
   }
 
@@ -109,6 +88,4 @@ public class RNVoipCallModule extends ReactContextBaseJavaModule implements Acti
   public  void  showMissedCallNotification(String title, String body, String callerId){
     rnVoipNotificationHelper.showMissCallNotification(title,body, callerId);
   }
-
-
 }
