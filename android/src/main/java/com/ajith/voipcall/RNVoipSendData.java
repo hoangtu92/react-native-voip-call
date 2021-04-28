@@ -31,6 +31,9 @@ public class RNVoipSendData {
             params.putString("action", action);
             params.putInt("notificationId", intent.getIntExtra("notificationId", 0));
             params.putString("callerId", intent.getStringExtra("callerId"));
+            params.putString("callerName", intent.getStringExtra("callerName"));
+            params.putBoolean("isVideo", intent.getBooleanExtra("isVideo", false));
+            params.putString("callerPic", intent.getStringExtra("callerPic"));
             params.putString("message","success");
 
             switch (action) {
