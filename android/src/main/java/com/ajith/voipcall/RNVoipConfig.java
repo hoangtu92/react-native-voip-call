@@ -84,6 +84,24 @@ public class RNVoipConfig {
         }else{
             config.putString("callerId", "123456789");
         }
+
+        if(checkType(json , "callerName", "String")){
+            config.putString("callerName", json.getString("callerName"));
+        }else{
+            config.putString("callerName", "LDS");
+        }
+
+        if(checkType(json , "callerPic", "String")){
+            config.putString("callerPic", json.getString("callerPic"));
+        }else{
+            config.putString("callerPic", "");
+        }
+
+        if(checkType(json , "isVideo", "Boolean")){
+            config.putBoolean("isVideo", json.getString("isVideo"));
+        }else{
+            config.putBoolean("isVideo", false);
+        }
         return config;
     }
 
