@@ -55,9 +55,6 @@ public class RNVoipNotificationHelper {
         dissmissIntent.setAction("callDismiss");
         dissmissIntent.putExtra("notificationId",notificationID);
         dissmissIntent.putExtra("callerId", json.getString("callerId"));
-        dissmissIntent.putExtra("callerName", json.getString("callerName"));
-        dissmissIntent.putExtra("callerPic", json.getString("callerPic"));
-        dissmissIntent.putExtra("isVideo", json.getString("isVideo"));
         dissmissIntent.putExtra("missedCallTitle", json.getString("missedCallTitle"));
         dissmissIntent.putExtra("missedCallBody", json.getString("missedCallBody"));
         PendingIntent callDismissIntent = PendingIntent.getBroadcast(context,0, dissmissIntent ,PendingIntent.FLAG_UPDATE_CURRENT);
@@ -115,6 +112,10 @@ public class RNVoipNotificationHelper {
 
         intent.putExtra("notificationId",notificationID);
         intent.putExtra("callerId", json.getString("callerId"));
+        intent.putExtra("callerId", json.getString("callerId"));
+        intent.putExtra("callerName", json.getString("callerName"));
+        intent.putExtra("callerPic", json.getString("callerPic"));
+        intent.putExtra("isVideo", json.getString("isVideo"));
         intent.putExtra("action", type);
         intent.setAction(type);
         PendingIntent pendingIntent = PendingIntent.getActivity(context, notificationID, intent, PendingIntent.FLAG_UPDATE_CURRENT);
