@@ -98,7 +98,7 @@ public class RNVoipConfig {
         }
 
         if(checkType(json , "isVideo", "Boolean")){
-            config.putBoolean("isVideo", json.getString("isVideo"));
+            config.putBoolean("isVideo", json.getBoolean("isVideo"));
         }else{
             config.putBoolean("isVideo", false);
         }
