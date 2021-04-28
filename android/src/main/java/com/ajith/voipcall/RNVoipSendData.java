@@ -64,24 +64,24 @@ public class RNVoipSendData {
             WritableMap params = Arguments.createMap();
             params.putString("action",action);
             params.putInt("notificationId", intent.getIntExtra("notificationId", 0));
+            params.putBoolean("isVideo", intent.getBooleanExtra("isVideo", false));
+            params.putString("callerId", intent.getStringExtra("callerId"));
+            params.putString("callerName", intent.getStringExtra("callerName"));
+            params.putString("callerPic", intent.getStringExtra("callerPic"));
             switch (Objects.requireNonNull(action)){
                 case "callAnswer":
-                    params.putString("callerId", intent.getStringExtra("callerId"));
                     sendEvent(mReactContext,"RNVoipCallPerformAnswerCallAction", params);
                     break;
                 case "fullScreenIntent":
-                    params.putString("callerId", intent.getStringExtra("callerId"));
                     sendEvent(mReactContext,"RNVoipCallFullScreenIntent", params);
                     break;
                 case "contentTap":
-                    params.putString("callerId", intent.getStringExtra("callerId"));
                     sendEvent(mReactContext,"RNVoipCallNotificationTap", params);
                     break;
                 case "callDismiss":
                     sendEvent(mReactContext,"RNVoipCallPerformEndCallAction", params);
                     break;
                 case "missedCallTape":
-                    params.putString("callerId", intent.getStringExtra("callerId"));
                     sendEvent(mReactContext,"RNVoipCallMissedCallTap", params);
                     break;
                 default:
