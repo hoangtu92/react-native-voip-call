@@ -60,6 +60,7 @@ public class RNVoipNotificationHelper {
         dissmissIntent.putExtra("isVideo", json.getBoolean("isVideo"));
         dissmissIntent.putExtra("missedCallTitle", json.getString("missedCallTitle"));
         dissmissIntent.putExtra("missedCallBody", json.getString("missedCallBody"));
+        dissmissIntent.putExtra("action", json.getString("callDismiss"));
         PendingIntent callDismissIntent = PendingIntent.getBroadcast(context,0, dissmissIntent ,PendingIntent.FLAG_UPDATE_CURRENT);
 
         Uri sounduri = Uri.parse("android.resource://" + context.getPackageName() + "/"+ R.raw.nosound);

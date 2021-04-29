@@ -49,6 +49,8 @@ public class RNVoipSendData {
                 case "missedCallTape":
                     promise.resolve(params);
                     break;
+                case "callDismiss":
+                    promise.resolve(params);
                 default:
                     promise.reject("error","no new Call Notications");
                     break;

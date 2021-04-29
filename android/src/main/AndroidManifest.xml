@@ -3,6 +3,6 @@
           package="com.ajith.voipcall">
         <application>
             <receiver android:name="com.ajith.voipcall.RNVoipBroadcastReciever" />
+            <service android:name="com.ajith.voipcall.RNVoipService" />
         </application>
 </manifest>
-  
