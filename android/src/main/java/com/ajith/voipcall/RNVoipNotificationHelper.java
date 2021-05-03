@@ -79,7 +79,6 @@ public class RNVoipNotificationHelper {
                 .setContentIntent(getPendingIntent(notificationID, "contentTap", json))
                 .setSmallIcon(R.drawable.ic_call_black_24dp)
                 .setPriority(NotificationManager.IMPORTANCE_HIGH)
-                .setImportant(NotificationManager.IMPORTANCE_HIGH)
                 .setContentTitle(json.getString("notificationTitle"))
                 .setSound(sounduri)
                 .setContentText(json.getString("notificationBody"))
