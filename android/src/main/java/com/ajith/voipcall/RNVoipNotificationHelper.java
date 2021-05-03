@@ -8,8 +8,7 @@ import android.app.NotificationManager;
 import android.app.PendingIntent;
 import android.content.Intent;
 
-import android.os.PowerManager;
-import android.view.WindowManager;
+
 import androidx.core.app.NotificationCompat;
 import android.content.Context;
 import android.media.AudioAttributes;
