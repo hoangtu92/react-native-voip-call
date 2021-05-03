@@ -27,6 +27,13 @@ public class RNVoipCallModule extends ReactContextBaseJavaModule implements Acti
 
   @Override
   public void onActivityResult(Activity activity, int requestCode, int resultCode, Intent intent) {
+    if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O_MR1) {
+      activity.setShowWhenLocked(true);
+      activity.setTurnScreenOn(true);
+    } else {
+      getWindow().addFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN | WindowManager.LayoutParams.FLAG_TURN_SCREEN_ON | WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON
+              | WindowManager.LayoutParams.FLAG_SHOW_WHEN_LOCKED | WindowManager.LayoutParams.FLAG_DISMISS_KEYGUARD);
+    }
     sendjsData.sentEventToJsModule(intent);
   }
 
@@ -54,8 +61,6 @@ public class RNVoipCallModule extends ReactContextBaseJavaModule implements Acti
   public void displayIncomingCall(ReadableMap jsonObject){
     ReadableMap data = RNVoipConfig.callNotificationConfig(jsonObject);
     rnVoipNotificationHelper.sendCallNotification(data);
-    getWindow().addFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN | WindowManager.LayoutParams.FLAG_TURN_SCREEN_ON | WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON
-            | WindowManager.LayoutParams.FLAG_SHOW_WHEN_LOCKED | WindowManager.LayoutParams.FLAG_DISMISS_KEYGUARD);
   }
 
   @ReactMethod
