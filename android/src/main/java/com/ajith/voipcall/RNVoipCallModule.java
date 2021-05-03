@@ -50,7 +50,6 @@ public class RNVoipCallModule extends ReactContextBaseJavaModule implements Acti
     return "RNVoipCall";
   }
 
-  @TargetApi(Build.VERSION_CODES.ECLAIR)
   @ReactMethod
   public void displayIncomingCall(ReadableMap jsonObject){
     ReadableMap data = RNVoipConfig.callNotificationConfig(jsonObject);
