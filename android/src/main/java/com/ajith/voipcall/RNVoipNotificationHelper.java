@@ -113,15 +113,6 @@ public class RNVoipNotificationHelper {
 
     public PendingIntent getPendingIntent(int notificationID , String type, ReadableMap json){
         Class intentClass = getMainActivityClass();
-
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O_MR1) {
-            intentClass.setShowWhenLocked(true);
-            intentClass.setTurnScreenOn(true);
-        } else {
-            intentClass.getWindow().addFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN | WindowManager.LayoutParams.FLAG_TURN_SCREEN_ON | WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON
-                    | WindowManager.LayoutParams.FLAG_SHOW_WHEN_LOCKED | WindowManager.LayoutParams.FLAG_DISMISS_KEYGUARD);
-        }
-
         Intent intent = new Intent(context, intentClass);
         intent.addFlags(Intent.FLAG_ACTIVITY_SINGLE_TOP);
         intent.addFlags(Intent.	FLAG_ACTIVITY_CLEAR_TOP);
