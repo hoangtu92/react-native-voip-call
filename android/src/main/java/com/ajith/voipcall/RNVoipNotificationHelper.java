@@ -8,6 +8,7 @@ import android.app.NotificationManager;
 import android.app.PendingIntent;
 import android.content.Intent;
 
+import android.os.PowerManager;
 import androidx.core.app.NotificationCompat;
 import android.content.Context;
 import android.media.AudioAttributes;
@@ -78,6 +79,7 @@ public class RNVoipNotificationHelper {
                 .setContentIntent(getPendingIntent(notificationID, "contentTap", json))
                 .setSmallIcon(R.drawable.ic_call_black_24dp)
                 .setPriority(NotificationManager.IMPORTANCE_HIGH)
+                .setImportant(NotificationManager.IMPORTANCE_HIGH)
                 .setContentTitle(json.getString("notificationTitle"))
                 .setSound(sounduri)
                 .setContentText(json.getString("notificationBody"))
@@ -88,6 +90,19 @@ public class RNVoipNotificationHelper {
         NotificationManager notificationManager = notificationManager();
         createCallNotificationChannel(notificationManager, json);
         notificationManager.notify(notificationID,notification);
+
+        PowerManager pm = (PowerManager) context.getSystemService(Context.POWER_SERVICE);
+        boolean isScreenOn; // check if screen is on
+        assert pm != null;
+        if (Build.VERSION.SDK_INT >= 20) {
+            isScreenOn = pm.isInteractive();
+        } else {
+            isScreenOn = pm.isScreenOn();
+        }
+        if (!isScreenOn) {
+            PowerManager.WakeLock wl = pm.newWakeLock(PowerManager.SCREEN_DIM_WAKE_LOCK | PowerManager.ACQUIRE_CAUSES_WAKEUP, "lds:notificationLock");
+            wl.acquire(3000); //set your time in milliseconds
+        }
     }
 
 
