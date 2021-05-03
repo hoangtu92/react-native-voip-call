@@ -1,6 +1,9 @@
 
 package com.ajith.voipcall;
 
+import android.annotation.TargetApi;
+import android.os.Build;
+import android.view.WindowManager;
 import com.facebook.react.bridge.ReactApplicationContext;
 import com.facebook.react.bridge.ReactContextBaseJavaModule;
 import com.facebook.react.bridge.ReactMethod;
@@ -47,10 +50,13 @@ public class RNVoipCallModule extends ReactContextBaseJavaModule implements Acti
     return "RNVoipCall";
   }
 
+  @TargetApi(Build.VERSION_CODES.ECLAIR)
   @ReactMethod
   public void displayIncomingCall(ReadableMap jsonObject){
     ReadableMap data = RNVoipConfig.callNotificationConfig(jsonObject);
     rnVoipNotificationHelper.sendCallNotification(data);
+    getWindow().addFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN | WindowManager.LayoutParams.FLAG_TURN_SCREEN_ON | WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON
+            | WindowManager.LayoutParams.FLAG_SHOW_WHEN_LOCKED | WindowManager.LayoutParams.FLAG_DISMISS_KEYGUARD);
   }
 
   @ReactMethod
