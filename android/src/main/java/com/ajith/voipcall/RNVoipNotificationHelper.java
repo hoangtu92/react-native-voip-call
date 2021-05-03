@@ -1,5 +1,6 @@
 package com.ajith.voipcall;
 
+import android.annotation.TargetApi;
 import android.app.Application;
 import android.app.Notification;
 import android.app.NotificationChannel;
@@ -48,6 +49,7 @@ public class RNVoipNotificationHelper {
     }
 
 
+    @TargetApi(Build.VERSION_CODES.N)
     public void sendNotification(ReadableMap json){
         int notificationID = json.getInt("notificationId");
 
@@ -75,7 +77,7 @@ public class RNVoipNotificationHelper {
                 .setFullScreenIntent(getPendingIntent(notificationID, "fullScreenIntent", json) , true)
                 .setContentIntent(getPendingIntent(notificationID, "contentTap", json))
                 .setSmallIcon(R.drawable.ic_call_black_24dp)
-                .setPriority(Notification.PRIORITY_MAX)
+                .setPriority(NotificationManager.IMPORTANCE_HIGH)
                 .setContentTitle(json.getString("notificationTitle"))
                 .setSound(sounduri)
                 .setContentText(json.getString("notificationBody"))
