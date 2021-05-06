@@ -10,6 +10,7 @@ import android.os.Build;
 import com.facebook.react.HeadlessJsTaskService;
 
 import java.util.List;
+import java.util.Objects;
 
 public class RNVoipBroadcastReciever extends  BroadcastReceiver {
 
@@ -20,7 +21,7 @@ public class RNVoipBroadcastReciever extends  BroadcastReceiver {
         RNVoipNotificationHelper rnVoipNotificationHelper = new RNVoipNotificationHelper(applicationContext);
         int notificationId = intent.getIntExtra("notificationId",0);
 
-        switch (intent.getAction()){
+        switch (Objects.requireNonNull(intent.getAction())){
             case "callDismiss":
                 RNVoipRingtunePlayer.getInstance(context).stopMusic();
                 rnVoipNotificationHelper.clearNotification(notificationId);

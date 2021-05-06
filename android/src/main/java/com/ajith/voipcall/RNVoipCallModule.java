@@ -56,13 +56,16 @@ public class RNVoipCallModule extends ReactContextBaseJavaModule implements Acti
     rnVoipNotificationHelper.sendCallNotification(data);
 
     Activity activity = getCurrentActivity();
-    if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O_MR1) {
-      activity.setShowWhenLocked(true);
-      activity.setTurnScreenOn(true);
-    } else {
-      activity.getWindow().addFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN | WindowManager.LayoutParams.FLAG_TURN_SCREEN_ON | WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON
-              | WindowManager.LayoutParams.FLAG_SHOW_WHEN_LOCKED | WindowManager.LayoutParams.FLAG_DISMISS_KEYGUARD);
+    if(activity != null){
+      if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O_MR1) {
+        activity.setShowWhenLocked(true);
+        activity.setTurnScreenOn(true);
+      } else {
+        activity.getWindow().addFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN | WindowManager.LayoutParams.FLAG_TURN_SCREEN_ON | WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON
+                | WindowManager.LayoutParams.FLAG_SHOW_WHEN_LOCKED | WindowManager.LayoutParams.FLAG_DISMISS_KEYGUARD);
+      }
     }
+
   }
 
   @ReactMethod
