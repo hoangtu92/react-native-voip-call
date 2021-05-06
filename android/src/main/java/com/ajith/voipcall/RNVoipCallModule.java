@@ -102,11 +102,5 @@ public class RNVoipCallModule extends ReactContextBaseJavaModule implements Acti
   @ReactMethod
   public  void  showMissedCallNotification(String title, String body, String callerId){
     rnVoipNotificationHelper.showMissCallNotification(title,body, callerId);
-    Activity activity = getCurrentActivity();
-    if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O_MR1) {
-      activity.setShowWhenLocked(false);
-    } else {
-      activity.getWindow().clearFlags(WindowManager.LayoutParams.FLAG_SHOW_WHEN_LOCKED | WindowManager.LayoutParams.FLAG_DISMISS_KEYGUARD);
-    }
   }
 }
